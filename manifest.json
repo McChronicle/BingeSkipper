@@ -4,7 +4,7 @@
   "name": "Netflix Intro Skipper",
   "version": "0.1.0",
 
-  "description": "Automatically skips Netflixs intros.",
+  "description": "Automatically skips Netflix intros.",
 
   "content_scripts": [
     {
