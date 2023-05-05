@@ -7,7 +7,6 @@
  */
 
 const onMutation = () => {
-    //const element = document.querySelector('.watch-video--skip-content-button, [data-uia="next-episode-seamless-button"], [data-uia="next-episode-seamless-button-draining"], [data-uia="interrupt-autoplay-continue"]');
     
     const skipIntroOrRecapButton = document.querySelector('.watch-video--skip-content-button');
     const nextEpisodeButton = document.querySelector('[data-uia="next-episode-seamless-button"], [data-uia="next-episode-seamless-button-draining"]');
