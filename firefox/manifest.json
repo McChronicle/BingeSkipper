@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Netflix AutoSkip",
     "description": "Autoclicker for Netflix intros, recaps, credits and continue watching prompts",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "browser_specific_settings": {
         "gecko": {
             "id": "{7dd9d89f-b94b-4d1e-873b-a4abd4954eef}"
