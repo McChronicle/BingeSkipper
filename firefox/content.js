@@ -14,7 +14,7 @@ const onMutation = () => {
     
     if (skipIntroOrRecapButton) {
         // get config from storage
-        chrome.storage.sync.get(["skipIntroAndRecap"], function(result) {
+        browser.storage.sync.get(["skipIntroAndRecap"]).then(result => {
             // click the button if the config is true
             if (result.skipIntroAndRecap) {
                 skipIntroOrRecapButton.click();
@@ -22,7 +22,7 @@ const onMutation = () => {
         });
     } else if (nextEpisodeButton) {
         // get config from storage
-        chrome.storage.sync.get(["autoClickNextEpisode"], function(result) {
+        browser.storage.sync.get(["autoClickNextEpisode"]).then(result => {
             // click the button if the config is true
             if (result.autoClickNextEpisode) {
                 nextEpisodeButton.click();
@@ -30,7 +30,7 @@ const onMutation = () => {
         });
     } else if (continueWatchingButton) {
         // get config from storage
-        chrome.storage.sync.get(["autoClickContinueWatching"], function(result) {
+        browser.storage.sync.get(["autoClickContinueWatching"]).then(result => {
             // click the button if the config is true
             if (result.autoClickContinueWatching) {
                 continueWatchingButton.click();
