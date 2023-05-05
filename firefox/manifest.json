@@ -1,16 +1,34 @@
 {
-
-  "manifest_version": 2,
-  "name": "Netflix Intro Skipper",
-  "version": "0.2.0",
-
-  "description": "Automatically skips Netflix intros.",
-
-  "content_scripts": [
-    {
-      "matches": ["*://*.netflix.com/*"],
-      "js": ["skip.js"]
-    }
-  ]
-
+    "manifest_version": 3,
+    "name": "Netflix AutoSkip",
+    "description": "Automatically skips Netflix intros",
+    "version": "0.2.0",
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "{7dd9d89f-b94b-4d1e-873b-a4abd4954eef}"
+        }
+    },
+    "icons": {
+        "16": "icons/icon16.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://www.netflix.com/*"],
+            "js": ["content.js"],
+            "run_at": "document_end"
+        }
+    ],
+    "action": {
+        "default_popup": "popup/popup.html",
+        "default_icon": {
+            "16": "icons/icon16.png",
+            "48": "icons/icon48.png",
+            "128": "icons/icon128.png"
+        }
+    },
+    "permissions": [
+        "storage"
+    ]
 }
