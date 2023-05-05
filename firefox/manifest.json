@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Netflix AutoSkip",
     "description": "Automatically skips Netflix intros",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "browser_specific_settings": {
         "gecko": {
             "id": "{7dd9d89f-b94b-4d1e-873b-a4abd4954eef}"
