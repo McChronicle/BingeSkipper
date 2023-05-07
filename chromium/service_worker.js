@@ -19,9 +19,9 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 function setPopup(tab) {
     // check the url of the active tab and set the popup accordingly
     if (tab.url.includes("netflix.com")) {
-        chrome.action.setPopup({popup: "netflix/popup.html"});
+        chrome.action.setPopup({popup: "netflix/popup/popup.html"});
     } else if (tab.url.includes("amazon.")) {
-        chrome.action.setPopup({popup: "amazon/popup.html"});
+        chrome.action.setPopup({popup: "amazon/popup/popup.html"});
     } else {
         chrome.action.setPopup({popup: "default/popup.html"});
     }

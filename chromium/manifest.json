@@ -11,7 +11,12 @@
     "content_scripts": [
         {
             "matches": ["https://www.netflix.com/*"],
-            "js": ["content.js"],
+            "js": ["netflix/content/content.js"],
+            "run_at": "document_end"
+        },
+        {
+            "matches": ["https://www.amazon.*/gp/video/*"],
+            "js": ["amazon/content/content.js"],
             "run_at": "document_end"
         }
     ],
