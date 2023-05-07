@@ -15,7 +15,7 @@
             "run_at": "document_end"
         },
         {
-            "matches": ["https://www.amazon.*/gp/video/*"],
+            "matches": ["https://www.amazon.com/gp/video/*", "https://www.amazon.de/gp/video/*", "https://www.amazon.co.uk/gp/video/*"],
             "js": ["amazon/content/content.js"],
             "run_at": "document_end"
         }
