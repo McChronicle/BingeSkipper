@@ -9,6 +9,17 @@ This is a simple plugin for Chromium based and Firefox based browsers that skips
 
 ## How to install
 ### Chromium based browsers
+1. Visit the page for this extension [in the chrome web store](https://chrome.google.com/webstore/detail/netflix-autoskip/oglhelhnbhiigifcgohdmhgaodaonhjl)
+2. Click "add"
+3. Enjoy! Updates will be applied automatically as we publish them on the chrome web store.
+
+### Firefox based browsers
+1. Visit the page for this extension [in the firefox addon store](https://addons.mozilla.org/de/firefox/addon/netflix-autoskip/)
+2. Click "add to firefox"
+3. Enjoy! Updates will be applied automatically as we publish them on the firefox addon store.
+
+### Manual installation
+### Chromium based browsers
 1. Download the latest release from [here](https://github.com/McChronicle/NetflixIntroSkipper/releases)
 2. Extract the zip file
 3. Open the extensions page in your browser
