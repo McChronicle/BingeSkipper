@@ -14,25 +14,25 @@ const onMutation = () => {
     
     if (skipIntroOrRecapButton) {
         // get config from storage
-        chrome.storage.sync.get(["skipIntroAndRecap"], function(result) {
+        chrome.storage.sync.get(["netflixSkipIntroAndRecap"], function(result) {
             // click the button if the config is true
-            if (result.skipIntroAndRecap) {
+            if (result.netflixSkipIntroAndRecap) {
                 skipIntroOrRecapButton.click();
             }
         });
     } else if (nextEpisodeButton) {
         // get config from storage
-        chrome.storage.sync.get(["autoClickNextEpisode"], function(result) {
+        chrome.storage.sync.get(["netflixAutoClickNextEpisode"], function(result) {
             // click the button if the config is true
-            if (result.autoClickNextEpisode) {
+            if (result.netflixAutoClickNextEpisode) {
                 nextEpisodeButton.click();
             }
         });
     } else if (continueWatchingButton) {
         // get config from storage
-        chrome.storage.sync.get(["autoClickContinueWatching"], function(result) {
+        chrome.storage.sync.get(["netflixAutoClickContinueWatching"], function(result) {
             // click the button if the config is true
-            if (result.autoClickContinueWatching) {
+            if (result.netflixAutoClickContinueWatching) {
                 continueWatchingButton.click();
             }
         });
