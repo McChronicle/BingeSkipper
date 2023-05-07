@@ -3,9 +3,9 @@
 ## What is this?
 This is a simple plugin for Chromium based and Firefox based browsers that skips the following Netflix screens:
 
-- The "Who's watching?" screen
 - The "Skip Intro" button
 - The "Continue Watching" button
+- The "Next Episode" button (credits)
 
 ## How to install
 ### Chromium based browsers
