@@ -15,13 +15,13 @@ This is a simple plugin for Chromium based and Firefox based browsers that skips
 
 ### Chromium based browsers
 
-1. Visit the page for this extension [in the chrome web store](https://chrome.google.com/webstore/detail/netflix-autoskip/oglhelhnbhiigifcgohdmhgaodaonhjl)
+1. Visit the page for this extension [in the Chrome web store](https://chrome.google.com/webstore/detail/netflix-autoskip/oglhelhnbhiigifcgohdmhgaodaonhjl)
 2. Click "add"
 3. Enjoy! Updates will be applied automatically as we publish them on the chrome web store.
 
 ### Firefox based browsers
 
-1. Visit the page for this extension [in the firefox addon store](https://addons.mozilla.org/de/firefox/addon/netflix-autoskip/)
+1. Visit the page for this extension [in the Firefox addon store](https://addons.mozilla.org/de/firefox/addon/bingeskipper/)
 2. Click "add to firefox"
 3. Enjoy! Updates will be applied automatically as we publish them on the firefox addon store.
 
