@@ -2,11 +2,14 @@
 
 ## What is this?
 
-This is a simple plugin for Chromium based and Firefox based browsers that skips the following Netflix screens:
+This is a simple plugin for Chromium based and Firefox based browsers that skips the following screens:
 
-- The "Skip Intro" button
-- The "Continue Watching" button
-- The "Next Episode" button (credits)
+- on Netflix:
+  - The "Skip Intro" button
+  - The "Continue Watching" button
+  - The "Next Episode" button (credits)
+- on Amazon Prime Video:
+  - TODO
 
 ## How to install
 
