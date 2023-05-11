@@ -1,4 +1,4 @@
-# Netflix AutoSkip
+# BingeSkipper
 
 ## What is this?
 
