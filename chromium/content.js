@@ -6,36 +6,51 @@
  * [data-uia="interrupt-autoplay-continue"] is the attribute for the "Continue Watching" button
  */
 
-const onMutation = () => {
-    
+const getSyncStorage = () => {
+    if (typeof chrome !== "undefined" && chrome.storage && chrome.storage.sync) {
+        return chrome.storage.sync;
+    }
+    if (typeof browser !== "undefined" && browser.storage && browser.storage.sync) {
+        return browser.storage.sync;
+    }
+    return null;
+};
+
+const getConfig = async () => {
+    const storage = getSyncStorage();
+    if (!storage) {
+        return {
+            skipIntroAndRecap: true,
+            autoClickNextEpisode: true,
+            autoClickContinueWatching: true,
+        };
+    }
+
+    return storage.get([
+        "skipIntroAndRecap",
+        "autoClickNextEpisode",
+        "autoClickContinueWatching",
+    ]);
+};
+
+const onMutation = async () => {
+
     const skipIntroOrRecapButton = document.querySelector('.watch-video--skip-content-button');
     const nextEpisodeButton = document.querySelector('[data-uia="next-episode-seamless-button"], [data-uia="next-episode-seamless-button-draining"]');
     const continueWatchingButton = document.querySelector('[data-uia="interrupt-autoplay-continue"]');
-    
-    if (skipIntroOrRecapButton) {
-        // get config from storage
-        chrome.storage.sync.get(["skipIntroAndRecap"], function(result) {
-            // click the button if the config is true
-            if (result.skipIntroAndRecap) {
-                skipIntroOrRecapButton.click();
-            }
-        });
-    } else if (nextEpisodeButton) {
-        // get config from storage
-        chrome.storage.sync.get(["autoClickNextEpisode"], function(result) {
-            // click the button if the config is true
-            if (result.autoClickNextEpisode) {
-                nextEpisodeButton.click();
-            }
-        });
-    } else if (continueWatchingButton) {
-        // get config from storage
-        chrome.storage.sync.get(["autoClickContinueWatching"], function(result) {
-            // click the button if the config is true
-            if (result.autoClickContinueWatching) {
-                continueWatchingButton.click();
-            }
-        });
+
+    const {
+        skipIntroAndRecap = true,
+        autoClickNextEpisode = true,
+        autoClickContinueWatching = true,
+    } = await getConfig();
+
+    if (skipIntroOrRecapButton && skipIntroAndRecap) {
+        skipIntroOrRecapButton.click();
+    } else if (nextEpisodeButton && autoClickNextEpisode) {
+        nextEpisodeButton.click();
+    } else if (continueWatchingButton && autoClickContinueWatching) {
+        continueWatchingButton.click();
     }
 
 }
