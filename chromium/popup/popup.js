@@ -1,4 +1,4 @@
-import { setAutoClickContinueWatching, setAutoClickNextEpisode, setSkipIntroAndRecap } from "../storage";
+import { setAutoClickContinueWatching, setAutoClickNextEpisode, setSkipIntroAndRecap } from "../storage.js";
 
 // load checkbox state from synced storage when popup is opened
 chrome.storage.sync.get(["skipIntroAndRecap", "autoClickNextEpisode", "autoClickContinueWatching"], function(result) {
