@@ -1,19 +1,19 @@
+import { setAutoClickContinueWatching, setAutoClickNextEpisode, setSkipIntroAndRecap } from "../storage";
+
 // load checkbox state from synced storage when popup is opened
 chrome.storage.sync.get(["skipIntroAndRecap", "autoClickNextEpisode", "autoClickContinueWatching"], function(result) {
 
-    // set values initially if they don't exist
+    // set values if they don't exist for some reason
     if (result.skipIntroAndRecap === undefined) {
-        chrome.storage.sync.set({"skipIntroAndRecap": true});
+        setSkipIntroAndRecap(true);
         result.skipIntroAndRecap = true;
     }
-
     if (result.autoClickNextEpisode === undefined) {
-        chrome.storage.sync.set({"autoClickNextEpisode": true});
+        setAutoClickNextEpisode(true);
         result.autoClickNextEpisode = true;
     }
-
     if (result.autoClickContinueWatching === undefined) {
-        chrome.storage.sync.set({"autoClickContinueWatching": true});
+        setAutoClickContinueWatching(true);
         result.autoClickContinueWatching = true;
     }
 
