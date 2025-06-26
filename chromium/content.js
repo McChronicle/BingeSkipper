@@ -6,32 +6,7 @@
  * [data-uia="interrupt-autoplay-continue"] is the attribute for the "Continue Watching" button
  */
 
-const getSyncStorage = () => {
-    if (typeof chrome !== "undefined" && chrome.storage && chrome.storage.sync) {
-        return chrome.storage.sync;
-    }
-    if (typeof browser !== "undefined" && browser.storage && browser.storage.sync) {
-        return browser.storage.sync;
-    }
-    return null;
-};
-
-const getConfig = async () => {
-    const storage = getSyncStorage();
-    if (!storage) {
-        return {
-            skipIntroAndRecap: true,
-            autoClickNextEpisode: true,
-            autoClickContinueWatching: true,
-        };
-    }
-
-    return storage.get([
-        "skipIntroAndRecap",
-        "autoClickNextEpisode",
-        "autoClickContinueWatching",
-    ]);
-};
+const storageModule = import(chrome.runtime.getURL('storage.js'));
 
 const onMutation = async () => {
 
@@ -39,11 +14,12 @@ const onMutation = async () => {
     const nextEpisodeButton = document.querySelector('[data-uia="next-episode-seamless-button"], [data-uia="next-episode-seamless-button-draining"]');
     const continueWatchingButton = document.querySelector('[data-uia="interrupt-autoplay-continue"]');
 
+    const { loadConfig } = await storageModule;
     const {
-        skipIntroAndRecap = true,
-        autoClickNextEpisode = true,
-        autoClickContinueWatching = true,
-    } = await getConfig();
+        skipIntroAndRecap,
+        autoClickNextEpisode,
+        autoClickContinueWatching,
+    } = await loadConfig();
 
     if (skipIntroOrRecapButton && skipIntroAndRecap) {
         skipIntroOrRecapButton.click();
@@ -55,6 +31,8 @@ const onMutation = async () => {
 
 }
     
-const observer = new MutationObserver(onMutation);
-    
-observer.observe(document.body, {childList: true, subtree: true});
+storageModule.then(() => {
+    const observer = new MutationObserver(onMutation);
+    observer.observe(document.body, { childList: true, subtree: true });
+});
+

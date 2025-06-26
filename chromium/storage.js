@@ -1,64 +1,35 @@
+export const DEFAULT_CONFIG = {
+    skipIntroAndRecap: true,
+    autoClickNextEpisode: true,
+    autoClickContinueWatching: true,
+};
 
-const getSyncStorage = () => {
-    if (typeof chrome !== "undefined" && chrome.storage && chrome.storage.sync) {
+export const getSyncStorage = () => {
+    if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.sync) {
         return chrome.storage.sync;
     }
-    if (typeof browser !== "undefined" && browser.storage && browser.storage.sync) {
+    if (typeof browser !== 'undefined' && browser.storage && browser.storage.sync) {
         return browser.storage.sync;
     }
     return null;
 };
 
-export function initializeConfigValues() {
-    setSkipIntroAndRecap(true);
-    setAutoClickNextEpisode(true);
-    setAutoClickContinueWatching(true);
-}
-
-export function getSkipIntroAndRecap() {
+export const loadConfig = async () => {
     const storage = getSyncStorage();
     if (!storage) {
-        return Promise.resolve(true);
+        return { ...DEFAULT_CONFIG };
     }
-    return storage.get("skipIntroAndRecap").then((data) => data.skipIntroAndRecap);
-}
-
-export function setSkipIntroAndRecap(value) {
-    const storage = getSyncStorage();
-    if (!storage) {
-        return;
+    const result = await new Promise((resolve) =>
+        storage.get(Object.keys(DEFAULT_CONFIG), resolve)
+    );
+    const toSet = {};
+    for (const key of Object.keys(DEFAULT_CONFIG)) {
+        if (result[key] === undefined) {
+            toSet[key] = DEFAULT_CONFIG[key];
+        }
     }
-    storage.set({"skipIntroAndRecap": value});
-}
-
-export function getAutoClickNextEpisode() {
-    const storage = getSyncStorage();
-    if (!storage) {
-        return Promise.resolve(true);
+    if (Object.keys(toSet).length) {
+        await new Promise((resolve) => storage.set(toSet, resolve));
     }
-    return storage.get("autoClickNextEpisode").then((data) => data.autoClickNextEpisode);
-}
-
-export function setAutoClickNextEpisode(value) {
-    const storage = getSyncStorage();
-    if (!storage) {
-        return;
-    }
-    storage.set({"autoClickNextEpisode": value});
-}
-
-export function getAutoClickContinueWatching() {
-    const storage = getSyncStorage();
-    if (!storage) {
-        return Promise.resolve(true);
-    }
-    return storage.get("autoClickContinueWatching").then((data) => data.autoClickContinueWatching);
-}
-
-export function setAutoClickContinueWatching(value) {
-    const storage = getSyncStorage();
-    if (!storage) {
-        return;
-    }
-    storage.set({"autoClickContinueWatching": value});
-}
+    return { ...DEFAULT_CONFIG, ...result, ...toSet };
+};
