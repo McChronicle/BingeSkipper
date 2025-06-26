@@ -1,30 +1,35 @@
+export const DEFAULT_CONFIG = {
+    skipIntroAndRecap: true,
+    autoClickNextEpisode: true,
+    autoClickContinueWatching: true,
+};
 
-export function initializeConfigValues(params) {
-    setSkipIntroAndRecap(true);
-    setAutoClickNextEpisode(true);
-    setAutoClickContinueWatching(true);
-}
+export const getSyncStorage = () => {
+    if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.sync) {
+        return chrome.storage.sync;
+    }
+    if (typeof browser !== 'undefined' && browser.storage && browser.storage.sync) {
+        return browser.storage.sync;
+    }
+    return null;
+};
 
-export function getSkipIntroAndRecap(value) {
-    return chrome.storage.sync.get("skipIntroAndRecap");
-}
-
-export function setSkipIntroAndRecap(value) {
-    chrome.storage.sync.set({"skipIntroAndRecap": value});
-}
-
-export function getAutoClickNextEpisode(value) {
-    return chrome.storage.sync.get("autoClickNextEpisode");
-}
-
-export function setAutoClickNextEpisode(value) {
-    chrome.storage.sync.set({"autoClickNextEpisode": value});
-}
-
-export function getAutoClickContinueWatching(value) {
-    return chrome.storage.sync.get("autoClickContinueWatching");
-}
-
-export function setAutoClickContinueWatching(value) {
-    chrome.storage.sync.set({"autoClickContinueWatching": value});
-}
+export const loadConfig = async () => {
+    const storage = getSyncStorage();
+    if (!storage) {
+        return { ...DEFAULT_CONFIG };
+    }
+    const result = await new Promise((resolve) =>
+        storage.get(Object.keys(DEFAULT_CONFIG), resolve)
+    );
+    const toSet = {};
+    for (const key of Object.keys(DEFAULT_CONFIG)) {
+        if (result[key] === undefined) {
+            toSet[key] = DEFAULT_CONFIG[key];
+        }
+    }
+    if (Object.keys(toSet).length) {
+        await new Promise((resolve) => storage.set(toSet, resolve));
+    }
+    return { ...DEFAULT_CONFIG, ...result, ...toSet };
+};
