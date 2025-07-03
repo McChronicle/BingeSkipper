@@ -16,8 +16,7 @@
         }
     ],
     "background": {
-        "service_worker": "service-worker.js",
-        "type": "module"
+        "service_worker": "serviceworker.js"
     },
     "action": {
         "default_popup": "popup/popup.html",
@@ -29,11 +28,5 @@
     },
     "permissions": [
         "storage"
-    ],
-    "web_accessible_resources": [
-        {
-            "resources": ["storage.js"],
-            "matches": ["https://www.netflix.com/*"]
-        }
     ]
 }
