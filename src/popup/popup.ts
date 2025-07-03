@@ -16,8 +16,6 @@ loadConfig().then((config) => {
 document.querySelectorAll("input[type=checkbox]").forEach(function(checkbox: Element) {
     checkbox.addEventListener("change", function() {
         const checkboxElement: HTMLInputElement = checkbox as HTMLInputElement;
-        const data: Map<string, boolean> = new Map;
-        data.set(checkboxElement.value, checkboxElement.checked);
-        syncStorage.set(data);
+        syncStorage.set({ [checkboxElement.value]: checkboxElement.checked });
     });
 });
