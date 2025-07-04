@@ -2,8 +2,11 @@ import { loadConfig, syncStorage } from "../storage";
 
 // load checkbox state from synced storage when popup is opened
 loadConfig().then((config) => {
-    const skipIntroCheckbox: HTMLInputElement = document.getElementById("skip-intro-and-recap") as HTMLInputElement;
-    skipIntroCheckbox.checked = config.skipIntroAndRecap;
+    const skipIntroCheckbox: HTMLInputElement = document.getElementById("skip-intro") as HTMLInputElement;
+    skipIntroCheckbox.checked = config.skipIntro;
+
+    const skipRecapCheckbox: HTMLInputElement = document.getElementById("skip-recap") as HTMLInputElement;
+    skipRecapCheckbox.checked = config.skipRecap;
 
     const autoClickNextEpisodeCheckbox: HTMLInputElement = document.getElementById("auto-click-next-episode") as HTMLInputElement;
     autoClickNextEpisodeCheckbox.checked = config.autoClickNextEpisode;

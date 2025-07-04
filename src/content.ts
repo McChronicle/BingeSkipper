@@ -9,9 +9,13 @@
 import { config } from "./storage";
 
 const onMutation: () => Promise<void> = async () => {
-    if (config.skipIntroAndRecap) {
-        const skipIntroOrRecapButton: HTMLElement | null = document.querySelector(".watch-video--skip-content-button");
-        skipIntroOrRecapButton?.click();
+    if (config.skipIntro) {
+        const skipIntroButton: HTMLElement | null = document.querySelector("[data-uia='player-skip-intro']");
+        skipIntroButton?.click();
+    }
+    if (config.skipRecap) {
+        const skipRecapButton: HTMLElement | null = document.querySelector("[data-uia='player-skip-recap']");
+        skipRecapButton?.click();
     }
     if (config.autoClickNextEpisode) {
         const nextEpisodeButton: HTMLElement | null = document.querySelector("[data-uia='next-episode-seamless-button'], [data-uia='next-episode-seamless-button-draining']");

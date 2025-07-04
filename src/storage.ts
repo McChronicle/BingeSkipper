@@ -1,12 +1,14 @@
 
 export interface Configuration {
-    skipIntroAndRecap: boolean,
+    skipIntro: boolean,
+    skipRecap: boolean,
     autoClickNextEpisode: boolean,
     autoClickContinueWatching: boolean,
 }
 
 export const DEFAULT_CONFIG: Configuration = {
-    skipIntroAndRecap: true,
+    skipIntro: true,
+    skipRecap: true,
     autoClickNextEpisode: true,
     autoClickContinueWatching: true,
 }
@@ -16,11 +18,11 @@ export const syncStorage: chrome.storage.SyncStorageArea = chrome.storage.sync;
 export const config: Configuration = await loadConfig();
 
 export async function loadConfig(): Promise<Configuration> {
-    const res: Configuration = await syncStorage.get(["autoClickContinueWatching", "autoClickNextEpisode", "skipIntroAndRecap"]);
+    const res: Configuration = await syncStorage.get(["autoClickContinueWatching", "autoClickNextEpisode", "skipIntro", "skipRecap"]);
     return res;
 };
 
-type ConfigValue = "autoClickContinueWatching" | "autoClickNextEpisode" | "skipIntroAndRecap";
+export type ConfigValue = "autoClickContinueWatching" | "autoClickNextEpisode" | "skipIntro" | "skipRecap";
 type MaybeConfigValue = ConfigValue | null;
 
 syncStorage.onChanged.addListener((changes) => {
