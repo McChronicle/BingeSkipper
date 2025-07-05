@@ -23,10 +23,6 @@ chrome.runtime.onInstalled.addListener(async ({ reason, previousVersion: previou
     }
 });
 
-chrome.runtime.onStartup.addListener(async () => {
-    await chrome.storage.sync.get(["autoClickContinueWatching", "autoClickNextEpisode", "skipIntroAndRecap", "skipIntro", "skipRecap"]);
-})
-
 interface StandardVersionNumber {
     major: number,
     minor: number,
