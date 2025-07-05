@@ -1,44 +1,42 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Netflix Auto Skipper</title>
+    <title>Netflix AutoSkip</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="popup.css" />
+    <link rel="stylesheet" href="bootstrap.min.css">
   </head>
-  <body>
-    <h2>Netflix Auto Skipper</h2>
-    <form>
-      <input
-        type="checkbox"
-        id="skip-intro"
-        name="config"
-        value="skipIntro"
-      />
-      <label for="skip-intro">skip intro</label><br />
-      <input
-        type="checkbox"
-        id="skip-recap"
-        name="config"
-        value="skipRecap"
-      />
-      <label for="skip-recap">skip recap</label><br />
-      <input
-        type="checkbox"
-        id="auto-click-next-episode"
-        name="config"
-        value="autoClickNextEpisode"
-      />
-      <label for="auto-click-next-episode">auto click next episode</label><br />
-      <input
-        type="checkbox"
-        id="auto-click-continue-watching"
-        name="config"
-        value="autoClickContinueWatching"
-      />
-      <label for="auto-click-continue-watching"
-        >auto click continue watching</label
-      ><br />
-    </form>
+  <body class="bg-dark">
+    <div class="container" id="main-container">
+      <h5 class="row user-select-none p-2" style="color: #dc1e2754">
+        Netflix AutoSkip
+      </h5>
+      <div class="form-check text-light">
+        <label class="form-check-label user-select-none" for="skip-intro">
+          <input class="form-check-input" type="checkbox" id="skip-intro" value="skipIntro"/>
+          skip intro
+        </label>
+      </div>
+      <div class="form-check text-light">
+        <label class="form-check-label user-select-none" for="skip-recap">
+          <input class="form-check-input" type="checkbox" id="skip-recap" value="skipRecap"/>
+          skip recap
+        </label>
+      </div>
+      <div class="form-check text-light">
+        <label class="form-check-label user-select-none" for="auto-click-next-episode">
+          <input class="form-check-input" type="checkbox" id="auto-click-next-episode" value="autoClickNextEpisode"/>
+          auto click next episode
+        </label>
+      </div>
+      <div class="form-check text-light mb-1">
+        <label class="form-check-label user-select-none" for="auto-click-continue-watching">
+          <input class="form-check-input" type="checkbox" id="auto-click-continue-watching" value="autoClickContinueWatching"/>
+          auto click continue watching
+        </label>
+      </div>
+    </div>
     <script type="module" src="popup.js"></script>
+    <script src="bootstrap.bundle.min.js"></script>
   </body>
 </html>

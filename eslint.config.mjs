@@ -7,7 +7,7 @@ import { defineConfig, globalIgnores } from "eslint/config";
 export default defineConfig([
   { files: ["**/*.{js,mjs,cjs,ts,mts,cts}"], plugins: { js }, extends: ["js/recommended"] },
   { files: ["**/*.{js,mjs,cjs,ts,mts,cts}"], languageOptions: { globals: globals.browser } },
-  [globalIgnores(["dist/*", "test/*", "webpack.config.js"])],
+  [globalIgnores(["dist/*", "test/*", "src/popup/bootstrap.bundle.min.js", "webpack.config.js"])],
   tseslint.configs.recommended,
   {
     rules: {
