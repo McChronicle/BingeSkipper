@@ -1,8 +1,14 @@
-import { Configuration, DEFAULT_CONFIG } from "./storage";
+import { Configuration } from "./storage";
 
 chrome.runtime.onInstalled.addListener(async ({ reason, previousVersion: previousVersionString }: chrome.runtime.InstalledDetails) => {
     if (reason === "install") {
-        chrome.storage.sync.set(DEFAULT_CONFIG)
+        const defaultConfig: Configuration = {
+            autoClickContinueWatching: true,
+            autoClickNextEpisode: true,
+            skipIntro: true,
+            skipRecap: true,
+        };
+        await chrome.storage.sync.set(defaultConfig);
     } else if (reason === "update") {
         if (previousVersionString !== undefined) {
             const previousVersion: StandardVersionNumber = toStandardVersionNumber(previousVersionString);

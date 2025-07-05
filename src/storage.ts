@@ -6,13 +6,6 @@ export interface Configuration {
     autoClickContinueWatching: boolean,
 }
 
-export const DEFAULT_CONFIG: Configuration = {
-    skipIntro: true,
-    skipRecap: true,
-    autoClickNextEpisode: true,
-    autoClickContinueWatching: true,
-}
-
 export const config: Configuration = await loadConfig();
 
 export async function loadConfig(): Promise<Configuration> {
