@@ -13,19 +13,17 @@ export const DEFAULT_CONFIG: Configuration = {
     autoClickContinueWatching: true,
 }
 
-export const syncStorage: chrome.storage.SyncStorageArea = chrome.storage.sync;
-
 export const config: Configuration = await loadConfig();
 
 export async function loadConfig(): Promise<Configuration> {
-    const res: Configuration = await syncStorage.get(["autoClickContinueWatching", "autoClickNextEpisode", "skipIntro", "skipRecap"]);
+    const res: Configuration = await chrome.storage.sync.get(["autoClickContinueWatching", "autoClickNextEpisode", "skipIntro", "skipRecap"]);
     return res;
 };
 
 export type ConfigValue = "autoClickContinueWatching" | "autoClickNextEpisode" | "skipIntro" | "skipRecap";
 type MaybeConfigValue = ConfigValue | null;
 
-syncStorage.onChanged.addListener((changes) => {
+chrome.storage.sync.onChanged.addListener((changes) => {
     for (const key in changes) {
         const keyConfigValue: MaybeConfigValue = key as MaybeConfigValue;
         if (keyConfigValue !== null) {

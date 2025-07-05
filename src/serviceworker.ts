@@ -1,22 +1,22 @@
-import { Configuration, DEFAULT_CONFIG, syncStorage } from "./storage";
+import { Configuration, DEFAULT_CONFIG } from "./storage";
 
 chrome.runtime.onInstalled.addListener(async ({ reason, previousVersion: previousVersionString }: chrome.runtime.InstalledDetails) => {
     if (reason === "install") {
-        syncStorage.set(DEFAULT_CONFIG)
+        chrome.storage.sync.set(DEFAULT_CONFIG)
     } else if (reason === "update") {
         if (previousVersionString !== undefined) {
             const previousVersion: StandardVersionNumber = toStandardVersionNumber(previousVersionString);
             if (previousVersion.major <= 2) {
                 if (previousVersion.minor === 0) { // migration from <= 2.0.0
-                    const storageValuesOld: { [key: string]: boolean } = await syncStorage.get(["autoClickContinueWatching", "autoClickNextEpisode", "skipIntroAndRecap"]);
+                    const storageValuesOld: { [key: string]: boolean } = await chrome.storage.sync.get(["autoClickContinueWatching", "autoClickNextEpisode", "skipIntroAndRecap"]);
                     const config: Configuration = {
                         autoClickContinueWatching: storageValuesOld["autoClickContinueWatching"],
                         autoClickNextEpisode: storageValuesOld["autoClickNextEpisode"],
                         skipIntro: storageValuesOld["skipIntroAndRecap"],
                         skipRecap: storageValuesOld["skipIntroAndRecap"],
                     }
-                    await syncStorage.clear();
-                    await syncStorage.set(config);
+                    await chrome.storage.sync.clear();
+                    await chrome.storage.sync.set(config);
                 }
             }
         }
@@ -24,7 +24,7 @@ chrome.runtime.onInstalled.addListener(async ({ reason, previousVersion: previou
 });
 
 chrome.runtime.onStartup.addListener(async () => {
-    await syncStorage.get(["autoClickContinueWatching", "autoClickNextEpisode", "skipIntroAndRecap", "skipIntro", "skipRecap"]);
+    await chrome.storage.sync.get(["autoClickContinueWatching", "autoClickNextEpisode", "skipIntroAndRecap", "skipIntro", "skipRecap"]);
 })
 
 interface StandardVersionNumber {

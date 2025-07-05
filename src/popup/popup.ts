@@ -1,4 +1,4 @@
-import { loadConfig, syncStorage } from "../storage";
+import { loadConfig } from "../storage";
 
 // load checkbox state from synced storage when popup is opened
 loadConfig().then((config) => {
@@ -19,6 +19,6 @@ loadConfig().then((config) => {
 document.querySelectorAll("input[type=checkbox]").forEach(function(checkbox: Element) {
     checkbox.addEventListener("change", function() {
         const checkboxElement: HTMLInputElement = checkbox as HTMLInputElement;
-        syncStorage.set({ [checkboxElement.value]: checkboxElement.checked });
+        chrome.storage.sync.set({ [checkboxElement.value]: checkboxElement.checked });
     });
 });
